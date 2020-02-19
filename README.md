@@ -1,2 +1,1 @@
-# ipspace-Networking-in-Public-Cloud-Deployments
-This includes the assignments through the course
+This repository contains the assignments of ipspace course: Networking in Public Cloud Deployments
