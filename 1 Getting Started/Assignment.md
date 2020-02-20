@@ -2,9 +2,9 @@
 
 ## Document Development
 
-### preparation
+### Preparation
 
-| Action | Name | Title | Date |
+|Action|Name|Title|Date|
 | --- | --- | --- | --- |
 | Prepared By: | Tim Sun | Technical Consultant | 18/02/2020 |
 | Reviewed By: |   |   |   |
@@ -23,18 +23,6 @@
 | --- | --- | --- |
 | Ipspace Instructor Team |   |   |
 | Course Attendees |   |   |
-
-
-
-
-### approvals list
-
-| Name | Title | Organization | Approval |
-| --- | --- | --- | --- |
-|   |   |   |   |
-|   |   |   |   |
-|   |   |   |   |
-
 
 ## 1 Introduction
 
@@ -92,6 +80,7 @@ The project requirements will be presented in tables with the following format:
 | --- | --- | --- | --- |
 | R.Example.1 | The System MUST have requirements. | **Mandatory** | 1 |
 | R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 3 |
+  
   Table 1 – Presentation Format
 
 Where:
