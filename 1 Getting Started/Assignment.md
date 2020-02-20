@@ -81,8 +81,6 @@ The project requirements will be presented in tables with the following format:
 | R.Example.1 | The System MUST have requirements. | **Mandatory** | 1 |
 | R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 3 |
   
-  Table 1 – Presentation Format
-
 Where:
 
 - **Identifier** is a unique identifier for the requirement, allowing the requirements to be explicitly referenced in other documents
@@ -102,8 +100,6 @@ The following statements have specific meaning when detailing requirements:
 | **SHOULD NOT** | Requirements described using the phrase SHOULD NOT are desirable items. Failing to satisfy these requirements will result in a system that has certain undesirable features but will still fulfil its ultimate purpose. This is the opposite of SHOULD.These requirements will have a classification of D, or Desirable.E.g.: The car SHOULD NOT be blue. |
 | **MAY** | Requirements described using the word MAY are optional items. Failing to satisfy these requirements will result in a system that fulfils the majority of its purpose but lacks certain &#39;nice to have&#39; features.These requirements will have a classification of O, or Optional.E.g.: The car MAY have GPS navigation. |
 | **MAY NOT** | Requirements described using the phrase MAY NOT are optional items. Failing to satisfy these requirements will result in a system that fulfils the majority of its purpose but lacks certain &#39;nice to have&#39; features. This phrase is also used to capture items that were discussed but evaluated as unnecessary.These requirements will have a classification of O, or Optional.E.g.: The car MAY NOT be red. |
-
-Table 2 – Nomenclature
 
 ## 2 Project Scope
 
@@ -159,8 +155,6 @@ The following general areas are considered in scope for this phase of the projec
 | R.MGT.10 | Changes made by admins SHOULD be logged | **Desirable** | 2 |
 | R.MGT.11 | Admins SHOULD be able to manage the web site with the corporate network accounts | **Desirable** | 2 |
 
-Table 3 – Project Inclusions
-
 ### 2.2 Exclusions
 
 The following areas are specifically out of scope for this phase of the project:
@@ -169,8 +163,6 @@ The following areas are specifically out of scope for this phase of the project:
 | :---: | :---: |
 | OOS.1 | The content of the web site |
 | OOS.2 | AWS accounts creation |
-
-Table 4 – Project Exclusions
 
 ### 2.3 Dependencies
 
@@ -181,5 +173,3 @@ The following are major dependencies for the delivery:
 | DEP.1 | Corporate network has centralized account management |
 | DEP.2 | Corporate network admins allocate non-duplicate private subnets |
 | DEP.3 | ABC company has exsiting ASW accounts |
-
-Table 5 – Project Dependencies
