@@ -5,14 +5,14 @@
 ### Preparation
 
 |Action|Name|Title|Date|
-| --- | --- | --- | --- |
+| :---: | :---: | :---: |:---: |
 | Prepared By: | Tim Sun | Technical Consultant | 18/02/2020 |
 | Reviewed By: |   |   |   |
 
 ### Release
 
 |Version|Date Released|Sections Affected|Remarks|Updated By|Email|
-| --- | --- | --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: | :---: | :---: |
 |1.0|18/02/2020|   | First Releas| Tim Sun|Tim.Sun@team.telstra.com|
 
 ## Document Control
