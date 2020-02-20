@@ -92,8 +92,7 @@ The project requirements will be presented in tables with the following format:
 | --- | --- | --- | --- |
 | R.Example.1 | The System MUST have requirements. | **Mandatory** | 1 |
 | R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 3 |
-
-Table 1 – Presentation Format
+  Table 1 – Presentation Format
 
 Where:
 
@@ -102,7 +101,7 @@ Where:
 - **Classification** defines the importance of fulfilling the requirement in terms of solution appropriateness. The order of importance is Optional, Desirable and Mandatory
 - **Priority** is referenced where time constraints are imposed on the delivery of the program of works. Critical path requirements or components will be delivered before non-critical components
 
-#### 1.6.1Nomenclature
+#### 1.6.1 Nomenclature
 
 The following statements have specific meaning when detailing requirements:
 
