@@ -1,20 +1,18 @@
-# ipspace_
-# Networking in Public Cloud Deployments
-| --- |
-# Getting Started
+# ipspace Networking in Public Cloud Deployments
 
+# Getting Started
 # Requirements Definition
 
-document development
+## document development
 
-preparation
+### preparation
 
 | Action | Name | Title | Date |
 | --- | --- | --- | --- |
 | Prepared By: | Tim Sun | Technical Consultant | 18/02/2020 |
 | Reviewed By: |   |   |   |
 
-Release
+### Release
 
 | Version | Date Released | Sections Affected | Remarks | Updated By |
 | --- | --- | --- | --- | --- |
@@ -22,7 +20,7 @@ Release
 |   |   |   |   |   |
 |   |   |   |   |   |
 
-Contact details
+### Contact details
 
 |   |
 | --- |
@@ -32,9 +30,9 @@ Contact details
 
 
 
-document control
+## document control
 
-Distribution list
+### Distribution list
 
 | Name | Title | Organization |
 | --- | --- | --- |
@@ -44,7 +42,7 @@ Distribution list
 
 
 
-approvals list
+### approvals list
 
 | Name | Title | Organization | Approval |
 | --- | --- | --- | --- |
@@ -52,47 +50,6 @@ approvals list
 |   |   |   |   |
 |   |   |   |   |
 
-
-
-
-
-Table of Contents
-
-1 Introduction        5
-
-1.1 Document Purpose        5
-
-1.2 Document Audience        5
-
-1.3 Document Scope        5
-
-1.4 Inclusions        5
-
-1.5 Exclusion        5
-
-1.6 Presentation Format        6
-
-1.6.1 Nomenclature        6
-
-2 Project Scope        8
-
-2.1 Inclusions        8
-
-2.1 Exclusions        9
-
-2.2 Dependencies        9
-
-Table of Tables
-
-Table 1 – Presentation Format        6
-
-Table 2 – Nomenclature        7
-
-Table 3 – Project Inclusions        9
-
-Table 4 – Project Exclusions        9
-
-Table 5 – Project Dependencies        10
 
 1. 1 Introduction
 
