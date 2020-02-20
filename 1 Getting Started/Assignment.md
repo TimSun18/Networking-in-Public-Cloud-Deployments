@@ -105,8 +105,6 @@ The following statements have specific meaning when detailing requirements:
 
 Table 2 – Nomenclature
 
-
-
 ## 2 Project Scope
 
 Project scope defines the boundaries of what will be included in the delivery of this project.
