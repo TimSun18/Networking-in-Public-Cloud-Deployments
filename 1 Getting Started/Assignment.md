@@ -79,7 +79,7 @@ The project requirements will be presented in tables with the following format:
 | Identifier | Description | Classification | Priority |
 | :---: | :---: | :---: | :---: |
 | R.Example.1 | The System MUST have requirements. | **Mandatory** | 1 |
-| R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 3 |
+| R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 2 |
   
 Where:
 
@@ -153,7 +153,7 @@ The following general areas are considered in scope for this phase of the projec
 | R.MGT.8 | Admins MUST NOT share the management account | **Mandatory** | 2 |
 | R.MGT.9 | IP addresses of admins SHOULD be logged | **Desirable** | 2 |
 | R.MGT.10 | Changes made by admins SHOULD be logged | **Desirable** | 2 |
-| R.MGT.11 | Admins SHOULD be able to manage the web site with the corporate network accounts | **Desirable** | 2 |
+| R.MGT.11 | Admins SHOULD be able to manage the web site with the corporate network accounts | **Desirable** | 3 |
 
 ### 2.2 Exclusions
 
