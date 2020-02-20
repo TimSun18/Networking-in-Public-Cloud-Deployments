@@ -1,8 +1,6 @@
-# ipspace Networking in Public Cloud Deployments
-
 # Getting Started - Requirements Definition
 
-## document development
+## Document Development
 
 ### preparation
 
@@ -13,19 +11,11 @@
 
 ### Release
 
-| Version | Date Released | Sections Affected | Remarks | Updated By |
-| --- | --- | --- | --- | --- |
-| 1.0 | 18/02/2020 |   | Initial Draft | Tim Sun |
+| Version | Date Released | Sections Affected | Remarks | Updated By |  Email |
+| --- | --- | --- | --- | --- | --- |
+| 1.0 | 18/02/2020 |   | First Releas | Tim Sun | Tim.Sun@team.telstra.com |
 
-
-### Contact details
-
-| Name: | Tim Sun |
-| Email: | Tim.Sun@team.telstra.com |
-
-
-
-## document control
+## Document Control
 
 ### Distribution list
 
@@ -33,7 +23,7 @@
 | --- | --- | --- |
 | Ipspace Instructor Team |   |   |
 | Course Attendees |   |   |
-|   |   |   |
+
 
 
 
@@ -46,14 +36,13 @@
 |   |   |   |   |
 
 
-1. 1 Introduction
+## 1 Introduction
 
 The purpose of this document is to state the requirements for Cloudia project of Company ABC (ABC). It is intended to provide the top-level requirements specification to enable the most appropriate solution to be determined.
 
 Cloudia project will enable ABC to utilize Amazon Web Services (AWS) to host company&#39;s web site.
 
-1.
-  1. 1.1 Document Purpose
+### 1.1 Document Purpose
 
 The Requirements Definition document captures what needs to be delivered to satisfy the needs of the project, identifying key criteria for the success of the project, phasing and criticality of solution components. This will influence subsequent phasing and delivery schedules of the project.
 
@@ -65,8 +54,7 @@ As such it achieves the following:
 - It provides the level of detail necessary to effectively guide the selection of potential deployment solutions
 - It provides a basis for assessment of the network solution once implemented
 
-1.
-  1. 1.2 Document Audience
+### 1.2 Document Audience
 
 The primary audience for this document consists of the ipspace team such areas as:
 
@@ -75,21 +63,18 @@ The primary audience for this document consists of the ipspace team such areas a
 
 This document is of primary importance and warrants input and acceptance from these teams.
 
-1.
-  1. 1.3 Document Scope
+### 1.3 Document Scope
 
 This Requirements Definition focuses on the identification and recommendation of solution requirements for the Cloudia project.
 
-1.
-  1. 1.4 Inclusions
+### 1.4 Inclusions
 
 The following general areas are considered in scope within this document:
 
 - Functional requirements
 - Non-functional requirements
 
-1.
-  1. 1.5 Exclusion
+### 1.5 Exclusion
 
 The following areas are specifically out of scope of this document:
 
@@ -99,8 +84,7 @@ The following areas are specifically out of scope of this document:
 - Implementation or activation planning
 - Migration strategy
 
-1.
-  1. 1.1 Presentation Format
+### 1.6 Presentation Format
 
 The project requirements will be presented in tables with the following format:
 
@@ -114,13 +98,11 @@ Table 1 – Presentation Format
 Where:
 
 - **Identifier** is a unique identifier for the requirement, allowing the requirements to be explicitly referenced in other documents
-- **Description** is a prose description of the requirement. It should be specific and verifiable and use terms detailed in Section 1.6.1 - Nomenclature.
+- **Description** is a prose description of the requirement. It should be specific and verifiable and use terms detailed in Section 
 - **Classification** defines the importance of fulfilling the requirement in terms of solution appropriateness. The order of importance is Optional, Desirable and Mandatory
 - **Priority** is referenced where time constraints are imposed on the delivery of the program of works. Critical path requirements or components will be delivered before non-critical components
 
-1.
-  1.
-    1. 1.1.1 Nomenclature
+#### 1.6.1Nomenclature
 
 The following statements have specific meaning when detailing requirements:
 
@@ -137,12 +119,11 @@ Table 2 – Nomenclature
 
 
 
-1. 2 Project Scope
+## 2 Project Scope
 
 Project scope defines the boundaries of what will be included in the delivery of this project.
 
-1.
-  1. 2.1 Inclusions
+### 2.1 Inclusions
 
 The following general areas are considered in scope for this phase of the project:
 
@@ -194,8 +175,7 @@ The following general areas are considered in scope for this phase of the projec
 
 Table 3 – Project Inclusions
 
-1.
-  1. 1.1 Exclusions
+### 2.2 Exclusions
 
 The following areas are specifically out of scope for this phase of the project:
 
@@ -206,8 +186,7 @@ The following areas are specifically out of scope for this phase of the project:
 
 Table 4 – Project Exclusions
 
-1.
-  1. 1.1 Dependencies
+### 2.3 Dependencies
 
 The following are major dependencies for the delivery:
 
