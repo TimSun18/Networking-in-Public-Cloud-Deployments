@@ -1,7 +1,6 @@
 # ipspace Networking in Public Cloud Deployments
 
-# Getting Started
-# Requirements Definition
+# Getting Started - Requirements Definition
 
 ## document development
 
@@ -16,16 +15,12 @@
 
 | Version | Date Released | Sections Affected | Remarks | Updated By |
 | --- | --- | --- | --- | --- |
-| 0.1 | 18/02/2020 |   | Initial Draft | Tim Sun |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| 1.0 | 18/02/2020 |   | Initial Draft | Tim Sun |
+
 
 ### Contact details
 
-|   |
-| --- |
 | Name: | Tim Sun |
-| Phone: |   |
 | Email: | Tim.Sun@team.telstra.com |
 
 
