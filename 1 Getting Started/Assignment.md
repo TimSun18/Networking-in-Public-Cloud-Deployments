@@ -1,28 +1,9 @@
-|
-#
- |
+# ipspace_
+# Networking in Public Cloud Deployments
 | --- |
-
-_ipspace_
-_Networking in Public Cloud Deployments_
-
-|   |
-| --- |
-|
 # Getting Started
 
 # Requirements Definition
-
-#
- |
-
-| VMtech |
-| --- |
-| MCN 2.0 expansion |
-| Requirements Definition |
-| version 1.0 |
-| March 2019 |
-|   |
 
 document development
 
