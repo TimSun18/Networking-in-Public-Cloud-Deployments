@@ -96,7 +96,7 @@ The following statements have specific meaning when detailing requirements:
 
 | Term | Description |
 | :---: | :---: |
-| MUST| Requirements described using the word MUST are mandatory items. Failing to satisfy these requirements will result in a system that does not fulfil its ultimate purpose.These requirements will have a classification of M, or Mandatory.E.g.: The car MUST have seatbelts. |
+| **MUST**| Requirements described using the word MUST are mandatory items. Failing to satisfy these requirements will result in a system that does not fulfil its ultimate purpose.These requirements will have a classification of M, or Mandatory.E.g.: The car MUST have seatbelts. |
 | **MUST NOT** | Requirements described using the phrase MUST NOT are mandatory items. Failing to satisfy these requirements will result in a system that does not fulfil its ultimate purpose. This is the opposite of MUST.These requirements will have a classification of M, or Mandatory.E.g.: The car MUST NOT explode when driven at 60 kph. |
 | **SHOULD** | Requirements described using the word SHOULD are desirable items. Failing to satisfy these requirements will result in a system that lacks certain features but will still fulfil its ultimate purpose.These requirements will have a classification of D, or Desirable.E.g.: The car SHOULD have air-conditioning. |
 | **SHOULD NOT** | Requirements described using the phrase SHOULD NOT are desirable items. Failing to satisfy these requirements will result in a system that has certain undesirable features but will still fulfil its ultimate purpose. This is the opposite of SHOULD.These requirements will have a classification of D, or Desirable.E.g.: The car SHOULD NOT be blue. |
