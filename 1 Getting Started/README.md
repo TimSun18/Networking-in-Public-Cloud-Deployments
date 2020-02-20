@@ -8,12 +8,10 @@ Identify the data needed by the solution you're deploying. What data is shared w
 > Data resite in database
 
 What are the security requirements of your application?
-> Firewall
-> Centralized account management 
+> Firewall and Centralized account management 
 
 What are the high availability requirements?
-> Load balancer
-> server cluster
+> Load balancer and server cluster
 
 Do you have to provide connectivity to your on-premises data center? If so, how will you implement it?
 > Yes, dedicated link (AWS direct connect) 
