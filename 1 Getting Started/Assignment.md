@@ -20,7 +20,7 @@
 ### Distribution list
 
 | Name | Title | Organization |
-| --- | --- | --- |
+| :---: | :---: | :---: |
 | Ipspace Instructor Team |   |   |
 | Course Attendees |   |   |
 
@@ -77,7 +77,7 @@ The following areas are specifically out of scope of this document:
 The project requirements will be presented in tables with the following format:
 
 | Identifier | Description | Classification | Priority |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | R.Example.1 | The System MUST have requirements. | **Mandatory** | 1 |
 | R.Example.2 | The System MAY have 40 requirements. | **Desirable** | 3 |
   
@@ -95,7 +95,7 @@ Where:
 The following statements have specific meaning when detailing requirements:
 
 | Term | Description |
-| --- | --- |
+| :---: | :---: |
 | MUST| Requirements described using the word MUST are mandatory items. Failing to satisfy these requirements will result in a system that does not fulfil its ultimate purpose.These requirements will have a classification of M, or Mandatory.E.g.: The car MUST have seatbelts. |
 | **MUST NOT** | Requirements described using the phrase MUST NOT are mandatory items. Failing to satisfy these requirements will result in a system that does not fulfil its ultimate purpose. This is the opposite of MUST.These requirements will have a classification of M, or Mandatory.E.g.: The car MUST NOT explode when driven at 60 kph. |
 | **SHOULD** | Requirements described using the word SHOULD are desirable items. Failing to satisfy these requirements will result in a system that lacks certain features but will still fulfil its ultimate purpose.These requirements will have a classification of D, or Desirable.E.g.: The car SHOULD have air-conditioning. |
@@ -121,7 +121,7 @@ The following general areas are considered in scope for this phase of the projec
 - **MGT** is an identifier for Management requirements
 
 | **Identifier** | **Description** | **Classification** | **Priority** |
-| --- | --- | --- | --- |
+| :---: | :---: | :---: | :---: |
 | R.GEN.1 | The project MUST deliver a solution on AWS | **Mandatory** | 1 |
 | R.GEN.2 | The project MUST deploy a web site | **Mandatory** | 1 |
 | R.GEN.3 | The project MUST deploy a backend database to host the content of the web site | **Mandatory** | 1 |
@@ -166,7 +166,7 @@ Table 3 – Project Inclusions
 The following areas are specifically out of scope for this phase of the project:
 
 | **ID** | **Description** |
-| --- | --- |
+| :---: | :---: |
 | OOS.1 | The content of the web site |
 | OOS.2 | AWS accounts creation |
 
@@ -177,7 +177,7 @@ Table 4 – Project Exclusions
 The following are major dependencies for the delivery:
 
 | ID | Description |
-| --- | --- |
+| :---: | :---: |
 | DEP.1 | Corporate network has centralized account management |
 | DEP.2 | Corporate network admins allocate non-duplicate private subnets |
 | DEP.3 | ABC company has exsiting ASW accounts |
