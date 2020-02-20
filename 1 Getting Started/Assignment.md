@@ -11,9 +11,9 @@
 
 ### Release
 
-| Version | Date Released | Sections Affected | Remarks | Updated By |  Email |
+|Version|Date Released|Sections Affected|Remarks|Updated By|Email|
 | --- | --- | --- | --- | --- | --- |
-| 1.0 | 18/02/2020 |   | First Releas | Tim Sun | Tim.Sun@team.telstra.com |
+|1.0|18/02/2020|   |First Releas|Tim Sun|Tim.Sun@team.telstra.com|
 
 ## Document Control
 
