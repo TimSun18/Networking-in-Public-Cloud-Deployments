@@ -37,3 +37,27 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
 ```
+
+##### Step 2
+
+Create an EC2 with ubuntu AMI placing in the public subnet created in setp 1.
+
+```
+[root@localhost 3 Compute Infrastructure]# ansible-playbook create-ec2.yml --ask-vault-pass
+Vault password: 
+
+PLAY [localhost] ***************************************************************************************************
+
+TASK [Get Security Group information] ******************************************************************************
+ok: [localhost]
+
+TASK [Get Subnet information] **************************************************************************************
+ok: [localhost]
+
+TASK [Provision instance(s)] ***************************************************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0     
+
+```
