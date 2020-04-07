@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: Get Security Group information
+    ec2_group_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        group-name: WEB_SG
+    register: SG_info
+
+  - name: Get Subnet information        
+    ec2_vpc_subnet_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        "tag:Name": public
+    register: subnet_public
+
+  - name: Provision instance(s)
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: web-keypair
+      id: apache-web
+      group_id: "{{ SG_info.security_groups[0].group_id }}"
+      image: "ami-02a599eb01e3b3c5b"
+      instance_type: "t2.micro"
+      region: "ap-southeast-2"
+      vpc_subnet_id: "{{ subnet_public.subnets[0].id }}"
+      assign_public_ip: yes
+      wait: true
+      count: 1
+      instance_tags:
+        Name: web
