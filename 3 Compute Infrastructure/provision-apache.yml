@@ -21,8 +21,7 @@
 
 - name: Provision Apache Server
   hosts: web_vm
-
-
+  
   tasks:
   - become: true
     block:
