@@ -4,7 +4,7 @@ This task creates an EC2 with ubuntu AMI and then installs apache2 web server. A
 
 #### Preparation
 
-Create an S3 bucket and upload the index.html and an image to it.
+Create an S3 bucket and upload the index.html and the static image to it.
 
 ![Image of S3 Bucket](https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/images/S3_Bucket.png?raw=true)
 
