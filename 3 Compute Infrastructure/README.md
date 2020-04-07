@@ -101,3 +101,8 @@ localhost
 
 ```
 
+##### Step 4
+
+Open a the EC2 URL and check the result. 
+
+![Image of Result](https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/images/Apache_web.png?raw=true)
