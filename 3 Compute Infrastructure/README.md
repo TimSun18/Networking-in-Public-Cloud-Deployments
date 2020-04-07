@@ -39,7 +39,7 @@ localhost                  : ok=5    changed=5    unreachable=0    failed=0    s
 
 #### Step 2
 
-Create an EC2 with ubuntu AMI placing in the public subnet created in setp 1.
+Create an EC2 instance with ubuntu AMI placing in the public subnet created in setp 1.
 
 ```
 [root@localhost 3 Compute Infrastructure]# ansible-playbook create-ec2.yml --ask-vault-pass
@@ -62,7 +62,7 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 #### Step 3
 
-Provision the web server by installing apache2 package and the replacing the default index.html with the one stored in S3 bucket.
+Provision the web server by installing apache2 package and replacing the default index.html with the one stored in S3 bucket.
 
 ```
 [root@localhost 3 Compute Infrastructure]# ansible-playbook provision-apache.yml --ask-vault-pass
@@ -102,13 +102,13 @@ localhost
 
 #### Step 4
 
-Open a the EC2 URL and check the result. 
+Open the EC2 URL and check the webpage result. 
 
 ![Image of Result](https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/images/Apache_web.png?raw=true)
 
 #### Clean-up
 
-Delete everything created in this task.
+Delete all resource created previously.
 
 ```
 [root@localhost 3 Compute Infrastructure]# ansible-playbook clean-up.yml --ask-vault-pass
