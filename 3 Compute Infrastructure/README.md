@@ -8,7 +8,7 @@ Create an S3 bucket and upload the index.html and an image to it.
 
 ![Image of S3 Bucket](https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/images/S3_Bucket.png?raw=true)
 
-##### Step 1
+#### Step 1
 
 Create a VPC including a public subnet, an IGW, an explicit route table and a security group. 
 
@@ -37,7 +37,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-##### Step 2
+#### Step 2
 
 Create an EC2 with ubuntu AMI placing in the public subnet created in setp 1.
 
@@ -60,7 +60,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0     
 ```
 
-##### Step 3
+#### Step 3
 
 Provision the web server by installing apache2 package and the replacing the default index.html with the one stored in S3 bucket.
 
@@ -100,13 +100,13 @@ ec2-3-24-124-100.ap-southeast-2.compute.amazonaws.com : ok=4    changed=4    unr
 localhost   
 ```
 
-##### Step 4
+#### Step 4
 
 Open a the EC2 URL and check the result. 
 
 ![Image of Result](https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/images/Apache_web.png?raw=true)
 
-##### Clean-up
+#### Clean-up
 
 Delete everything created in this task.
 
