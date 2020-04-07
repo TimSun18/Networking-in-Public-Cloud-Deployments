@@ -108,7 +108,7 @@ Open the EC2 URL and check the webpage result.
 
 #### Clean-up
 
-Delete all resource created previously.
+Delete all resources created previously.
 
 ```
 [root@localhost 3 Compute Infrastructure]# ansible-playbook clean-up.yml --ask-vault-pass
