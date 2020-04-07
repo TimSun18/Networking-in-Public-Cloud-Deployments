@@ -1,2 +1,2 @@
 ansible_ssh_user: ubuntu
-ansible_ssh_private_key_file: "/home/timsun/ipspace/cloud/3 Compute Infrastructure/web-keypair.pem"
+ansible_ssh_private_key_file: "https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/master/3%20Compute%20Infrastructure/web-keypair.pem"
