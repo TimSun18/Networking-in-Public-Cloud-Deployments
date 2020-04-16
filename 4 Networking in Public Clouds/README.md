@@ -38,7 +38,7 @@ localhost                  : ok=6    changed=6    unreachable=0    failed=0    s
 
 #### Step 2
 
-Create 3 ec2 instances
+Create 3 ec2 instances. An EIP is associated with an ENI which then is attached to the Jumphost.
 
 ```
 [root@localhost 4 Networking in Public Clouds]# ansible-playbook create-ec2-instances.yml --ask-vault-pass 
