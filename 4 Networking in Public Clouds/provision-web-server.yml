@@ -1,0 +1,36 @@
+---
+- name: Create a web server group
+  hosts: localhost
+
+  tasks:
+  - name: get web EC2 info
+    ec2_instance_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        "tag:Name": web
+    register: EC2_info
+
+  - name: add web server to the group
+    add_host:
+      name: "{{ item.public_dns_name }}"
+      groups: web_vm
+    loop: "{{ EC2_info.instances }}"
+    when: item.state.name == "running"
+
+- name: provision the apache server
+  hosts: web_vm
+
+  tasks:
+  - become: true
+    block:
+    - name: update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install apache on ubuntu
+      apt:
+        name: apache2
+        state: latest

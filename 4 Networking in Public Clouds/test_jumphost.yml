@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: get jumphost EC2 info
+    ec2_instance_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        "tag:Name": jumphost
+    register: jumphost_info
+
+  - name:  ssh to jumphost
+    command: ssh -i "{{ ansible_ssh_private_key_file }}" "{{ ansible_ssh_user }}"@"{{ item.public_dns_name }}"
+    loop: "{{ jumphost_info.instances }}"
+    when: item.state.name == "running"
+    register: jumphost_ssh_prompt

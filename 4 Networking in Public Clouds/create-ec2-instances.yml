@@ -1,0 +1,105 @@
+---
+- name: create and an EIP and associate with an ENI
+  hosts: localhost
+  
+  tasks:
+  - name: get default security group information
+    ec2_group_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        group-name: default
+    register: SG_info
+
+  - name: get subnet information        
+    ec2_vpc_subnet_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        "tag:Name": public
+    register: subnet_public
+
+  - name: get subnet information        
+    ec2_vpc_subnet_info:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      region: "ap-southeast-2"
+      filters:
+        "tag:Name": private
+    register: subnet_private
+
+  - name: create an elastic network interface in the public subnet
+    ec2_eni:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      subnet_id: "{{ subnet_public.subnets[0].id }}"
+      region: "ap-southeast-2"
+      security_groups: "{{ SG_info.security_groups[0].group_id }}"
+      state: present
+    register: eni_status
+
+
+  - name: allocate a new elastic IP
+    ec2_eip:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      device_id: "{{ eni_status.interface.id }}"
+      region: "ap-southeast-2"
+      in_vpc: yes
+      allow_reassociation: yes
+          
+- name: Deploy an SSH jumphost, a web server and another vm in private subnet
+  hosts: localhost
+  
+  tasks:
+  
+  - name: Deploy a jumphost
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: web-keypair
+      id: jump-host
+      image: "ami-02a599eb01e3b3c5b"
+      instance_type: "t2.micro"
+      region: "ap-southeast-2"
+      network_interface: "{{ eni_status.interface.id }}"
+      wait: true
+      count: 1
+      instance_tags:
+        Name: jumphost
+  
+  - name: Deploy a web server
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: web-keypair
+      id: web-host
+      group_id: "{{ SG_info.security_groups[0].group_id }}"
+      image: "ami-02a599eb01e3b3c5b"
+      instance_type: "t2.micro"
+      region: "ap-southeast-2"
+      vpc_subnet_id: "{{ subnet_public.subnets[0].id }}"
+      assign_public_ip: yes
+      wait: true
+      count: 1
+      instance_tags:
+        Name: web
+                
+  - name: Deploy a private server
+    ec2:
+      aws_access_key: "{{ec2_access_key}}"
+      aws_secret_key: "{{ec2_secret_key}}"
+      key_name: web-keypair
+      id: private-host
+      group_id: "{{ SG_info.security_groups[0].group_id }}"
+      image: "ami-02a599eb01e3b3c5b"
+      instance_type: "t2.micro"
+      region: "ap-southeast-2"
+      vpc_subnet_id: "{{ subnet_private.subnets[0].id }}"
+      assign_public_ip: yes
+      wait: true
+      count: 1
+      instance_tags:
+        Name: private 
