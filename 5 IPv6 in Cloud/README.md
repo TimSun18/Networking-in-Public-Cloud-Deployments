@@ -19,7 +19,7 @@ localhost                  : ok=1    changed=1    unreachable=0    failed=0    s
 ```
 
 #### Step 2
-Because ansible module ec2_vpc_net cannot be used to enable IPv6 CIDR block when creatin the VPC, need to manually enable the Amazon provided IPv6 CIDR block.
+Because ansible module ec2_vpc_net cannot be used to enable IPv6 CIDR block when creating the VPC, need to manually enable the Amazon provided IPv6 CIDR block.
 
 #### Step 3
 Configure the network for VPC, create the EC2 instances and provision the web server. Because ansible module ec2_vpc_route_table cannot add IPv6 default route, add a pause during the ansible play in order to take time manually adding the IPv6 default route.
