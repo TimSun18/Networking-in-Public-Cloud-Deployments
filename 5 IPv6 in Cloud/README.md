@@ -100,7 +100,10 @@ localhost                  : ok=14   changed=9    unreachable=0    failed=0    s
 
 #### Step 4
 
-Test IPv6 connectivity to each host. Please note SSH from Internet to the private host was failed, which is an expected result. The failure was ignored during the play.
+Test IPv6 connectivity to each host. 
+```diff
+- Please note SSH from Internet to the private host was failed, which is an expected result. The failure was ignored during the play.
+```
 ```
 [timsun@controller 5 IPv6 in Cloud]$ ansible-playbook tests.yml 
 
@@ -175,9 +178,7 @@ Entering Ex mode.  Type "visual" to go to Normal mode.
 :q
 TASK [SSH from internet to private host] ***************************************************************************
 fatal: [localhost]: FAILED! => {"ansible_job_id": "530609118517.61912", "changed": true, "cmd": ["ssh", "-i", "/home/timsun/ipspace/cloud/5 IPv6 in Cloud/web-keypair.pem ubuntu@2406:da1c:711:6364:2bb0:b3d9:b51b:7ba9"], "delta": "0:00:00.009639", "end": "2020-05-02 23:06:48.398305", "finished": 1, "msg": "non-zero return code", "rc": 255, "start": "2020-05-02 23:06:48.388666", "stderr": "Warning: Identity file /home/timsun/ipspace/cloud/5 IPv6 in Cloud/web-keypair.pem ubuntu@2406:da1c:711:6364:2bb0:b3d9:b51b:7ba9 not accessible: No such file or directory.\nusage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]\n           [-D [bind_address:]port] [-E log_file] [-e escape_char]\n           [-F configfile] [-I pkcs11] [-i identity_file]\n           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]\n           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]\n           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]\n           [user@]hostname [command]", "stderr_lines": ["Warning: Identity file /home/timsun/ipspace/cloud/5 IPv6 in Cloud/web-keypair.pem ubuntu@2406:da1c:711:6364:2bb0:b3d9:b51b:7ba9 not accessible: No such file or directory.", "usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]", "           [-D [bind_address:]port] [-E log_file] [-e escape_char]", "           [-F configfile] [-I pkcs11] [-i identity_file]", "           [-J [user@]host[:port]] [-L address] [-l login_name] [-m mac_spec]", "           [-O ctl_cmd] [-o option] [-p port] [-Q query_option] [-R address]", "           [-S ctl_path] [-W host:port] [-w local_tun[:remote_tun]]", "           [user@]hostname [command]"], "stdout": "", "stdout_lines": []}
-```diff
--...ignoring
-```
+...ignoring
 PLAY RECAP *********************************************************************************************************
 localhost                  : ok=12   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
 ```
