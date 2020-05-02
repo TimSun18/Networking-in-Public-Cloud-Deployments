@@ -99,9 +99,6 @@ Test IPv6 connectivity to each host. Please note SSH from Internet to the privat
 
 PLAY [localhost] ***************************************************************************************************
 
-TASK [Include variables file] **************************************************************************************
-ok: [localhost]
-
 TASK [get jumphost EC2 info] ***************************************************************************************
 ok: [localhost]
 
@@ -174,8 +171,7 @@ fatal: [localhost]: FAILED! => {"ansible_job_id": "530609118517.61912", "changed
 ...ignoring
 
 PLAY RECAP *********************************************************************************************************
-localhost                  : ok=13   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
-  
+localhost                  : ok=12   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
 ```
 
 #### Clean-up
