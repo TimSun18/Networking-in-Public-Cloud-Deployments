@@ -1,0 +1,26 @@
+---
+  - name: get jumphost EC2 info
+    ec2_instance_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": jumphost
+    register: jumphost_info
+        
+  - name: get private EC2 info
+    ec2_instance_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": private
+    register: private_info
+ 
+  - name: SSH from jumphost to private host
+    shell: 
+       ssh -i /home/ubuntu/web-keypair.pem ubuntu@"{{ private_info.instances[0].network_interfaces[0].ipv6_addresses[0].ipv6_address }}"
+       exit
+    delegate_to: "{{ jumphost_info.instances[0].public_dns_name }}"
+
+  - name:  SSH from internet to private host
+    command: ssh -i "{{ ansible_ssh_private_key_file }} {{ ansible_ssh_user }}@{{ private_info.instances[0].network_interfaces[0].ipv6_addresses[0].ipv6_address }}"
+    async: 30
+    poll: 5
+    ignore_errors: yes

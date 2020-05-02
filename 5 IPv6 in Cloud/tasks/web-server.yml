@@ -1,0 +1,13 @@
+---
+  - become: true
+    block:
+    - name: update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install apache on ubuntu
+      apt:
+        name: apache2
+        state: latest
+...

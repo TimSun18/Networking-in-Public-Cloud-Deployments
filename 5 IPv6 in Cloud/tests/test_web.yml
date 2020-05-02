@@ -1,0 +1,32 @@
+---
+  - name: get web EC2 info
+    ec2_instance_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": web
+    register: web_info
+
+  - name:  ssh to web server
+    command: ssh -i "{{ ansible_ssh_private_key_file }}" "{{ ansible_ssh_user }}"@"{{ item.network_interfaces[0].ipv6_addresses[0].ipv6_address }}"
+    loop: "{{ web_info.instances }}"
+    when: item.state.name == "running"
+    register: web_ssh_prompt
+
+  - name:  check if able to connect (GET) to a page and it returns a status 200
+    uri:
+      url: "http://[{{ item.network_interfaces[0].ipv6_addresses[0].ipv6_address }}]"
+      status_code: 200
+    loop: "{{ web_info.instances }}"
+    when: item.state.name == "running"
+    register: web_http
+
+  - name: print SSH result
+    debug:
+      msg: "SSH from the Internet to the web host is successful."
+    when:  "'Welcome to Ubuntu' in web_ssh_prompt.results[0].stdout" 
+
+  - name: print HTTP result
+    debug:
+      msg: "HTTP from the Internet to the web host is successful."
+    when:  web_http.results[0].status == 200
+...

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: create a VPC
+    ec2_vpc_net:
+      name: "{{ vpc_name }}"
+      cidr_block: "{{ cidr_block }}"
+      region: "{{ region }}"
+      state: "{{ state | default('present') }}"

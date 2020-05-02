@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Include variables file 
+      include_vars: group_vars/web_vm.yml
+
+    - name: Test the jumphost
+      include: tests/test_jumphost.yml
+
+    - name: Test the web server
+      include: tests/test_web.yml
+
+    - name: Test the private host
+      include: tests/test_private.yml
+...

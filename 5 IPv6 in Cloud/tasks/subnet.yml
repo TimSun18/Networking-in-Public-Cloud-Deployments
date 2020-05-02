@@ -1,0 +1,65 @@
+---
+  - name: create a public subnet
+    ec2_vpc_net_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": "{{ vpc_name }}"
+    register: vpc_status
+
+  - name: create a public subnet
+    ec2_vpc_subnet:
+      region: "{{ region }}"
+      az: "{{ availability_zone }}"
+      cidr: "{{ publlic_ipv4_cidr }}"
+      assign_instances_ipv6: yes
+      ipv6_cidr: "{{ publlic_ipv6_cidr }}"
+      vpc_id: "{{ vpc_status.vpcs[0].id }}"
+      map_public: yes
+      tags:
+        Name: "public"
+    register: sub_public
+
+  - name: create a private subnet
+    ec2_vpc_subnet:
+      region: "{{ region }}"
+      az: "{{ availability_zone }}"
+      cidr: "{{ private_ipv4_cidr }}"
+      assign_instances_ipv6: yes
+      ipv6_cidr: "{{ private_ipv6_cidr }}"
+      vpc_id: "{{ vpc_status.vpcs[0].id }}"
+      map_public: no
+      tags:
+        Name: "private"
+    register: sub_private
+
+  - name: create an Internet gateway
+    ec2_vpc_igw:
+      region: "{{ region }}"
+      vpc_id: "{{ vpc_status.vpcs[0].id }}"
+    register: igw
+
+  - name: create a public route table
+    ec2_vpc_route_table:
+      region: "{{ region }}"
+      vpc_id:  "{{ vpc_status.vpcs[0].id }}"
+      subnets:
+      - "{{ sub_public.subnet.id }}"
+      routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id }}"
+
+  - name: create default security group to allow HTTP, HTTPS and SSH
+    ec2_group:
+      name: "{{ SG }}"
+      vpc_id: "{{ vpc_status.vpcs[0].id }}"
+      region: "{{ region }}"
+      description: "{{ SG_description }}"
+      rules:
+        - proto: tcp
+          ports:
+            - 22
+            - 80
+            - 443
+          cidr_ip: 0.0.0.0/0
+          cidr_ipv6: ::/0 
+...

@@ -1,0 +1,56 @@
+---
+  - name: Query publuc subnet information        
+    ec2_vpc_subnet_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": public
+    register: subnet_public
+
+  - name: Query private information        
+    ec2_vpc_subnet_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": private
+    register: subnet_private
+
+  - name: Deploy a jumphost
+    ec2_instance:
+      name: jumphost
+      key_name: "{{ key_name }}"
+      security_group: "{{ SG }}"
+      image_id: "{{ image_id }}"
+      instance_type: "{{ instance_type }}"
+      region: "{{ region }}"
+      vpc_subnet_id: "{{ subnet_public.subnets[0].id }}"
+      network:
+        assign_public_ip: yes
+      wait: true
+
+  - name: Deploy a web server
+    ec2_instance:
+      name: web
+      key_name: "{{ key_name }}"
+      security_group: "{{ SG }}"
+      image_id: "{{ image_id }}"
+      instance_type: "{{ instance_type }}"
+      region: "{{ region }}"
+      vpc_subnet_id: "{{ subnet_public.subnets[0].id }}"
+      network:
+        assign_public_ip: yes
+      wait: true
+
+  - name: Deploy a private server
+    ec2_instance:
+      name: private
+      key_name: "{{ key_name }}"
+      security_group: "{{ SG }}"
+      image_id: "{{ image_id }}"
+      instance_type: "{{ instance_type }}"
+      region: "{{ region }}"
+      vpc_subnet_id: "{{ subnet_private.subnets[0].id }}"
+      network:
+        assign_public_ip: yes
+      wait: true
+... 
+ 
+

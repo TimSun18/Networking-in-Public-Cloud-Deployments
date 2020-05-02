@@ -1,0 +1,36 @@
+---
+- name: Create EC2 instances
+  hosts: localhost
+  
+  tasks:
+  - name: Create subnets
+    include: tasks/subnet.yml
+
+  - name: Because ansible ec2_vpc_route_table doesn't support IPv6, need to manually add IPv6 default route
+    pause:
+      minutes: 5
+
+  - name: Initiate EC2 instances
+    include: tasks/ec2.yml
+
+  - name: Query web EC2 info
+    ec2_instance_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": web
+    register: EC2_info
+
+  - name: Add web servers to the group
+    add_host:
+      name: "{{ item.public_dns_name }}"
+      groups: web_vm
+    loop: "{{ EC2_info.instances }}"
+    when: item.state.name == "running"
+
+- name: Provision web server
+  hosts: web_vm
+    
+  tasks: 
+  - name: Provision web server
+    include: tasks/web-server.yml
+...

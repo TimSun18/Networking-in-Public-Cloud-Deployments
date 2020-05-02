@@ -1,0 +1,15 @@
+vpc_name: WEB_VPC
+cidr_block: 192.168.0.0/16
+region: ap-southeast-2
+availability_zone: ap-southeast-2a
+publlic_ipv4_cidr: 192.168.1.0/24
+private_ipv4_cidr: 192.168.2.0/24
+publlic_ipv6_cidr: 2406:da1c:711:6300::/64
+private_ipv6_cidr: 2406:da1c:711:6364::/64
+SG: WEB_SG
+SG_description: Security Group for Web_VPC
+image_id: ami-02a599eb01e3b3c5b 
+instance_type: t2.micro
+key_name: web-keypair
+ansible_ssh_user: ubuntu
+ansible_ssh_private_key_file: "/home/timsun/ipspace/cloud/5 IPv6 in Cloud/web-keypair.pem"

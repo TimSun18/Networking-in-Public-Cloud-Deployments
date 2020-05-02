@@ -1,0 +1,19 @@
+---
+  - name: get jumphost EC2 info
+    ec2_instance_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": jumphost
+    register: jumphost_info
+
+  - name:  ssh to jumphost IPV6 address
+    command: ssh -i "{{ ansible_ssh_private_key_file }}" "{{ ansible_ssh_user }}"@"{{ item.network_interfaces[0].ipv6_addresses[0].ipv6_address }}"
+    loop: "{{ jumphost_info.instances }}"
+    when: item.state.name == "running"
+    register: jumphost_ssh_prompt
+
+  - name:  print the result
+    debug:
+      msg: "SSH from the Internet to jumphost is successful."
+    when:  "'Welcome to Ubuntu' in jumphost_ssh_prompt.results[0].stdout"
+...
