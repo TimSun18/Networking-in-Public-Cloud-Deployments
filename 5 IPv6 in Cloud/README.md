@@ -95,7 +95,8 @@ localhost                  : ok=14   changed=9    unreachable=0    failed=0    s
 
 Test IPv6 connectivity to each host. 
 ```diff
-- Please Note the failure of SSH'ing from Internet to the private host is expected. The failure was ignored during the play.
+- Please Note the failure of SSH'ing from Internet to the private host is expected. 
+- The failure was ignored during the play.
 ```
 ```
 [timsun@controller 5 IPv6 in Cloud]$ ansible-playbook tests.yml 
