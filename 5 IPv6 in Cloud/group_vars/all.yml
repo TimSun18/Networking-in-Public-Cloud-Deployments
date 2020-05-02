@@ -12,4 +12,4 @@ image_id: ami-02a599eb01e3b3c5b
 instance_type: t2.micro
 key_name: web-keypair
 ansible_ssh_user: ubuntu
-ansible_ssh_private_key_file: "/home/timsun/ipspace/cloud/5 IPv6 in Cloud/web-keypair.pem"
+ansible_ssh_private_key_file: "https://github.com/TimSun18/Networking-in-Public-Cloud-Deployments/blob/test/5%20IPv6%20in%20Cloud/web-keypair.pem"
