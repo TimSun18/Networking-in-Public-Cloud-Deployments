@@ -1,5 +1,12 @@
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+```
+
 ## Introduction
-&#x1F34E;
+
 This task creates 3 IPv4/IPv6 dual-stack EC2 instances, among which 2 instances (web and jumphost) are in a public subnet and 1 private host is placed in the private subnet.
 
 The target is users from Internet are able to SSH to the IPv6 addresses of web server and the jumpost as well as access the web page hosted on the web server. However, only the jumphost can be used to access the private server.
