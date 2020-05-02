@@ -1,10 +1,3 @@
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-```
-
 ## Introduction
 
 This task creates 3 IPv4/IPv6 dual-stack EC2 instances, among which 2 instances (web and jumphost) are in a public subnet and 1 private host is placed in the private subnet.
@@ -102,7 +95,7 @@ localhost                  : ok=14   changed=9    unreachable=0    failed=0    s
 
 Test IPv6 connectivity to each host. 
 ```diff
-- Please note SSH from Internet to the private host was failed, which is an expected result. The failure was ignored during the play.
+- Please Note the failure of SSH'ing from Internet to the private host is expected. The failure was ignored during the play.
 ```
 ```
 [timsun@controller 5 IPv6 in Cloud]$ ansible-playbook tests.yml 
