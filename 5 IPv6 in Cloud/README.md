@@ -14,14 +14,20 @@ PLAY [localhost] ***************************************************************
 TASK [create a VPC] ************************************************************************************************
 changed: [localhost]
 
+TASK [Query VPC info] **********************************************************************************************
+ok: [localhost]
+
+TASK [name the VPC] ************************************************************************************************
+[WARNING]: conditional statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found:
+item.cidr_block == "{{ cidr_block }}"
+skipping: [localhost] => (item={u'is_default': True, u'tags': {}, u'classic_link_enabled': False, u'cidr_block_association_set': [{u'association_id': u'vpc-cidr-assoc-d8886bb3', u'cidr_block': u'172.31.0.0/16', u'cidr_block_state': {u'state': u'associated'}}], u'enable_dns_support': True, u'instance_tenancy': u'default', u'state': u'available', u'classic_link_dns_supported': False, u'id': u'vpc-926462f5', u'vpc_id': u'vpc-926462f5', u'cidr_block': u'172.31.0.0/16', u'dhcp_options_id': u'dopt-e34b6b84', u'enable_dns_hostnames': True, u'owner_id': u'687251871473'}) 
+changed: [localhost] => (item={u'is_default': False, u'tags': {}, u'classic_link_enabled': False, u'cidr_block_association_set': [{u'association_id': u'vpc-cidr-assoc-05ee2914a7904f584', u'cidr_block': u'192.168.0.0/16', u'cidr_block_state': {u'state': u'associated'}}], u'enable_dns_support': True, u'instance_tenancy': u'default', u'state': u'available', u'ipv6_cidr_block_association_set': [{u'association_id': u'vpc-cidr-assoc-069d504a92f7f0895', u'ipv6_cidr_block_state': {u'state': u'associated'}, u'ipv6_pool': u'Amazon', u'ipv6_cidr_block': u'2406:da1c:b23:7900::/56', u'network_border_group': u'ap-southeast-2'}], u'classic_link_dns_supported': False, u'id': u'vpc-0eda9e62977ca2765', u'vpc_id': u'vpc-0eda9e62977ca2765', u'cidr_block': u'192.168.0.0/16', u'dhcp_options_id': u'dopt-e34b6b84', u'enable_dns_hostnames': False, u'owner_id': u'687251871473'})
+
 PLAY RECAP *********************************************************************************************************
-localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 #### Step 2
-Because ansible module ec2_vpc_net cannot be used to enable IPv6 CIDR block when creating the VPC, need to manually enable the Amazon provided IPv6 CIDR block.
-
-#### Step 3
 Configure the network for VPC, create the EC2 instances and provision the web server. Because ansible module ec2_vpc_route_table cannot add IPv6 default route, add a pause during the ansible play in order to take time manually adding the IPv6 default route.
 ```
 [timsun@controller 5 IPv6 in Cloud]$ ansible-playbook main.yml 
@@ -91,8 +97,7 @@ localhost                  : ok=14   changed=9    unreachable=0    failed=0    s
           : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0    
 ```
 
-#### Step 4
-
+#### Step 3
 Test IPv6 connectivity to each host. Please Note the failure of SSH'ing from Internet to the private host is expected. The failure was ignored during the play.
 
 ```diff
