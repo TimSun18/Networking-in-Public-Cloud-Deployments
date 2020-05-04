@@ -4,8 +4,6 @@
   tasks:
   - name: create a VPC
     ec2_vpc_net:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       name: vpc_web
       cidr_block: "192.168.0.0/16"
       region: "ap-southeast-2"
@@ -14,8 +12,6 @@
 
   - name: create a public subnet
     ec2_vpc_subnet:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       region: "ap-southeast-2"
       az: "ap-southeast-2a"
       cidr: "192.168.1.0/24"
@@ -27,8 +23,6 @@
 
   - name: create a private subnet
     ec2_vpc_subnet:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       region: "ap-southeast-2"
       az: "ap-southeast-2a"
       cidr: "192.168.2.0/24"
@@ -40,16 +34,12 @@
 
   - name: create an Internet gateway
     ec2_vpc_igw:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       region: "ap-southeast-2"
       vpc_id: "{{ vpc_status.vpc.id }}"
     register: igw
 
   - name: create a public route table
     ec2_vpc_route_table:
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       region: "ap-southeast-2"
       vpc_id: "{{ vpc_status.vpc.id }}"
       subnets:
@@ -65,8 +55,6 @@
       description: default VPC security group
       vpc_id: "{{ vpc_status.vpc.id }}"
       region: "ap-southeast-2"
-      aws_access_key: "{{ec2_access_key}}"
-      aws_secret_key: "{{ec2_secret_key}}"
       rules:
         - proto: tcp
           ports:
