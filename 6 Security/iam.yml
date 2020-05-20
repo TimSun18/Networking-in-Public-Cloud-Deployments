@@ -25,7 +25,7 @@
         - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
       state: present
 
-  - name: create a user that can view networking resources and modify compute resources
+  - name: create a user that can view compute resources and modify networking resources
     iam_user:
       name: ec2admin
       managed_policy:
