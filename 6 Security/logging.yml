@@ -1,0 +1,62 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: Create an IAM role with custom trust relationship
+    iam:
+      iam_type: role
+      name: FlowLogRole
+      state: present
+      trust_policy:
+        Version: '2012-10-17'
+        Statement:
+        - Action: sts:AssumeRole
+          Effect: Allow
+          Sid: ''
+          Principal:
+            Service: vpc-flow-logs.amazonaws.com
+    register: iam_role
+
+  - name: Assign a policy called cloudwatch to the new role
+    iam_policy:
+      iam_type: role
+      iam_name: FlowLogRole
+      policy_name: cloudwatch
+      policy_json:
+        Version: '2012-10-17'
+        Statement:
+          - Action: 
+            - 'logs:CreateLogGroup' 
+            - 'logs:CreateLogStream' 
+            - 'logs:PutLogEvents'
+            - 'logs:DescribeLogGroups'
+            - 'logs:DescribeLogStreams'
+            Effect: Allow
+            Resource: '*'
+      state: present
+
+  - name: Query publuc subnet information        
+    ec2_vpc_subnet_info:
+      region: "{{ region }}"
+      filters:
+        "tag:Name": public
+    register: subnet_public
+
+  - name: Deploy a jumphost
+    ec2_instance:
+      name: jumphost
+      key_name: "{{ key_name }}"
+      security_group: "{{ SG }}"
+      image_id: "{{ image_id }}"
+      instance_type: "{{ instance_type }}"
+      region: "{{ region }}"
+      vpc_subnet_id: "{{ subnet_public.subnets[0].id }}"
+      network:
+        assign_public_ip: yes
+      wait: true
+    register: jumphost
+
+  - name: create a network interface flow log for the jumphost
+    shell:
+      aws ec2 create-flow-logs --resource-type NetworkInterface --resource-ids {{ jumphost.instances[0].network_interfaces[0].network_interface_id }} --traffic-type ALL --log-group-name jumphost-flow-logs --deliver-logs-permission-arn {{ iam_role.role_result.arn }}
+

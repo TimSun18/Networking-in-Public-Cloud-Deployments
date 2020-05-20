@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: create a condition mathing /admin
+    aws_waf_condition:
+      name: admin_filter
+      filters:
+      - field_to_match: URI
+        position: CONTAINS_WORD
+        target_string: /admin
+        transformation: none
+      type: byte
+
+  - name: create a condition mathing /login
+    aws_waf_condition:
+      name: login_filter
+      filters:
+      - field_to_match: URI
+        position: CONTAINS_WORD
+        target_string: /login
+        transformation: none
+      type: byte
+
+
+
+  - name: create WAF rule
+    aws_waf_rule:
+      name: web_rule
+      conditions:
+        - name: admin_filter
+          type: byte
+          negated: no
+        - name: login_filter
+          type: byte
+          negated: no
+
+  - name: create web ACL
+    aws_waf_web_acl:
+      name: web_protection
+      rules:
+        - name: web_rule 
+          priority: 1
+          action: block
+      default_action: allow
+      purge_rules: no
+      state: present
+

@@ -1,0 +1,144 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: create a VPC
+    ec2_vpc_net:
+      name: vpc_web
+      cidr_block: "{{ cidr_block }}"
+      region: "{{ region }}"
+      state: "{{ state | default('present') }}"
+    register: vpc_status
+
+  - name: create a public subnet
+    ec2_vpc_subnet:
+      region: "{{ region }}"
+      az: "{{ availability_zone }}"
+      cidr: "{{ publlic_ipv4_cidr }}"
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      map_public: yes
+      tags:
+        Name: "public"
+    register: sub_public
+
+  - name: create a private subnet
+    ec2_vpc_subnet:
+      region: "{{ region }}"
+      az: "{{ availability_zone }}"
+      cidr: "{{ private_ipv4_cidr }}"
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      map_public: no
+      tags:
+        Name: "private"
+    register: sub_private
+
+  - name: create an Internet gateway
+    ec2_vpc_igw:
+      region: "{{ region }}"
+      vpc_id: "{{ vpc_status.vpc.id }}"
+    register: igw
+
+  - name: create a public route table
+    ec2_vpc_route_table:
+      region: "{{ region }}"
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      subnets:
+      - "{{ sub_public.subnet.id }}"
+      routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id }}"
+                
+  - name: initiate the web server securtiy group
+    ec2_group:
+      name: web
+      description: web server security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+    register: web_sg
+
+  - name: initiate the jumphost securtiy group
+    ec2_group:
+      name: jumphost
+      description: jumphost security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+    register: jumphost_sg
+
+  - name: initiate the database securtiy group
+    ec2_group:
+      name: database
+      description: database security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+    register: database_sg
+
+  - name: modify the web server securtiy group
+    ec2_group:
+      name: web
+      description: web server security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+      rules:
+        - proto: tcp
+          ports:
+            - 80
+            - 443
+          cidr_ip: 0.0.0.0/0
+          rule_desc: Anyone can connect to the Web server(s) over HTTP and HTTPS
+        - proto: tcp
+          ports:
+            - 22
+          group_id: "{{ jumphost_sg.owner_id }}/{{ jumphost_sg.group_id }}/jumphost"
+          rule_desc: SSH jump host can connect to any VM within the virtual network over SSH
+      rules_egress:
+        - proto: tcp
+          ports:
+            - 80
+            - 3306
+          group_id: "{{ database_sg.owner_id }}/{{ database_sg.group_id }}/database"
+          rule_desc: Web server(s) can connect to database server(s) over HTTP and MySQL
+        
+  - name: modify the jumphost securtiy group
+    ec2_group:
+      name: jumphost
+      description: jumphost security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+      rules:
+        - proto: tcp
+          ports:
+            - 22
+          cidr_ip: "{{ jumphost_ingress_ip }}"
+          rule_desc: Specified IP addresses can connect to the SSH jump host over SSH
+      rules_egress:
+        - proto: tcp
+          ports:
+            - 22
+          cidr_ip: "{{ cidr_block }}"
+          rule_desc: SSH jump host can connect to any VM within the virtual network over SSH
+        
+  - name: modify the database securtiy group
+    ec2_group:
+      name: database
+      description: database security group
+      vpc_id: "{{ vpc_status.vpc.id }}"
+      region: "{{ region }}"
+      rules:
+        - proto: tcp
+          ports:
+            - 80
+            - 3306
+          group_id: "{{ web_sg.owner_id }}/{{ web_sg.group_id }}/web"
+          rule_desc: Web server(s) can connect to database server(s) over HTTP and MySQL
+        - proto: tcp
+          ports:
+            - 22
+          group_id: "{{ jumphost_sg.owner_id }}/{{ jumphost_sg.group_id }}/jumphost"
+          rule_desc: SSH jump host can connect to any VM within the virtual network over SSH
+      rules_egress:
+        - proto: tcp
+          ports:
+            - 80
+            - 3306
+          group_id: "{{ database_sg.owner_id }}/{{ database_sg.group_id }}/database"
+          rule_desc: Database server(s) can communicate over HTTP and MySQL

@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: create a user that has read-only access 
+    iam_user:
+      name: readonly
+      managed_policy:
+        - arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess 
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+      state: present
+
+  - name: create a user that can modify the storage bucke
+    iam_user:
+      name: s3admin
+      managed_policy:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      state: present
+
+  - name: create a user that can view networking resources and modify compute resources
+    iam_user:
+      name: netadmin
+      managed_policy:
+        - arn:aws:iam::aws:policy/AmazonVPCFullAccess
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+      state: present
+
+  - name: create a user that can view networking resources and modify compute resources
+    iam_user:
+      name: ec2admin
+      managed_policy:
+        - arn:aws:iam::aws:policy/AmazonEC2FullAccess
+        - arn:aws:iam::aws:policy/AmazonVPCReadOnlyAccess
+      state: present
