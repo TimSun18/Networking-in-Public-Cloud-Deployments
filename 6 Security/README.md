@@ -57,7 +57,6 @@ Create multiple users within your account (or subscription):<br />
 A user that has read-only access - when using those credentials you should be able to see the networking and compute resources, but not modify them.<br />
 A user that can modify the storage bucket you created in the third exercise, but not anything else<br />
 A user that can view networking resources and modify compute resources. Split your deployment procedure into two parts, and deploy networking and compute resources using two separate users<br />
-
 #### Solution
 Configure some IAM users to meet the requirements.
 ```
@@ -82,9 +81,8 @@ localhost                  : ok=4    changed=4    unreachable=0    failed=0    s
 ```
 
 ### 3. Application firewall
-#### Requirements
+#### Requirement
 Add a web application firewall in front of your web server and block any attempts to access /admin or /login URLs.
-
 #### Solution
 Create two filter condition referenced by a WAF rule that is then called by a WAF ACL.
 ```
@@ -109,9 +107,8 @@ localhost                  : ok=4    changed=4    unreachable=0    failed=0    s
 ```
 
 ### 4. Session logging
-#### Requirements
+#### Requirement
 Log all sessions to and from SSH jump host.
-
 #### Solution
 Create an IAM role with permission of creating cloudwatch log groups and writing logs. Then create a flow log binding associating with the network interface of the Jumphost.
 ```
