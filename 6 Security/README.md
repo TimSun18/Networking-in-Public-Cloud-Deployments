@@ -8,7 +8,7 @@ SSH jump host can connect to any VM within your virtual network over SSH;<br />
 Web server(s) can connect to database server(s) over HTTP and MySQL (or any other similar service)<br />
 Database server(s) can communicate over HTTP and MySQL
 #### Solution
-Create 3 security groups to filter the traffic
+Create 3 security groups (web, jumphost and database) to filter the traffic. Need to instantiate the groups first, then update the rules consisting group references.
 ```
 [timsun@controller 6 Security]$ ansible-playbook traffic_filters.yml 
 
