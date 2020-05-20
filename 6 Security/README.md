@@ -74,7 +74,7 @@ changed: [localhost]
 TASK [create a user that can view networking resources and modify compute resources] *******************************
 changed: [localhost]
 
-TASK [create a user that can view networking resources and modify compute resources] *******************************
+TASK [create a user that can view compute resources and modify networking resources] *******************************
 changed: [localhost]
 
 PLAY RECAP *********************************************************************************************************
