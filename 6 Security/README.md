@@ -3,9 +3,9 @@ This is the assignment for module 6 Secure Your Virtual Network Infrastructure
 ### Traffic filters
 #### Requirements
 Anyone can connect to the Web server over HTTP and HTTPS;<br />
-Specified IP addresses can connect to the SSH jump host over SSH;
-SSH jump host can connect to any VM within your virtual network over SSH;
-Web server(s) can connect to database server(s) over HTTP and MySQL (or any other similar service)
+Specified IP addresses can connect to the SSH jump host over SSH;<br />
+SSH jump host can connect to any VM within your virtual network over SSH;<br />
+Web server(s) can connect to database server(s) over HTTP and MySQL (or any other similar service)<br />
 Database server(s) can communicate over HTTP and MySQL
 #### Solution
 Create 3 security groups to filter the traffic
