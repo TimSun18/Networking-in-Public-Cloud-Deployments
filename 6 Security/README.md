@@ -1,16 +1,15 @@
-
 ## Introduction
 This is the assignment for module 6 Secure Your Virtual Network Infrastructure
 
-#### Q 1
-#####Requirements
+### Q 1
+#### Requirement
 > Anyone can connect to the Web server over HTTP and HTTPS;
 > Specified IP addresses can connect to the SSH jump host over SSH;
 > SSH jump host can connect to any VM within your virtual network over SSH;
 > Web server(s) can connect to database server(s) over HTTP and MySQL (or any other similar service)
 > Database server(s) can communicate over HTTP and MySQL
 
-#####Solution
+#### Solution
 Create 3 security groups to filter the traffic
 ```
 [timsun@controller 6 Security]$ ansible-playbook traffic_filters.yml 
