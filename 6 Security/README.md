@@ -1,6 +1,6 @@
 ## Introduction
-This is the assignment for module 6 Secure Your Virtual Network Infrastructure
-### Traffic filters
+This is the assignment for module 6 Secure Your Virtual Network Infrastructure.
+### 1. Traffic filters
 #### Requirements
 Anyone can connect to the Web server over HTTP and HTTPS;<br />
 Specified IP addresses can connect to the SSH jump host over SSH;<br />
@@ -51,74 +51,34 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=11   changed=11   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
 ```
 
-#### Step 2
-Configure the network for VPC, create the EC2 instances and provision the web server. Because ansible module ec2_vpc_route_table cannot add IPv6 default route, add a pause during the ansible play in order to take time manually adding the IPv6 default route.
+### 2. Identity and Access Management
+#### Requirements
+Create multiple users within your account (or subscription):
+A user that has read-only access - when using those credentials you should be able to see the networking and compute resources, but not modify them.<br />
+A user that can modify the storage bucket you created in the third exercise, but not anything else<br />
+A user that can view networking resources and modify compute resources. Split your deployment procedure into two parts, and deploy networking and compute resources using two separate users<br />
+
+#### Solution
+Configure some IAM users to meet the requirements.
 ```
-[timsun@controller 5 IPv6 in Cloud]$ ansible-playbook main.yml 
+[timsun@controller 6 Security]$ ansible-playbook iam.yml             
 
-PLAY [Create EC2 instances] ****************************************************************************************
+PLAY [localhost] ***************************************************************************************************
 
-TASK [create a public subnet] **************************************************************************************
-ok: [localhost]
-
-TASK [create a public subnet] **************************************************************************************
+TASK [create a user that has read-only access] *********************************************************************
 changed: [localhost]
 
-TASK [create a private subnet] *************************************************************************************
+TASK [create a user that can modify the storage bucke] *************************************************************
 changed: [localhost]
 
-TASK [create an Internet gateway] **********************************************************************************
+TASK [create a user that can view networking resources and modify compute resources] *******************************
 changed: [localhost]
 
-TASK [create a public route table] *********************************************************************************
-[WARNING]: Skipping purging route {u'GatewayId': 'local', u'Origin': 'CreateRouteTable', u'State': 'active',
-u'DestinationIpv6CidrBlock': '2406:da1c:711:6300::/56'} because it has no destination cidr block. To remove VPC
-endpoints from route tables use the ec2_vpc_endpoint module.
+TASK [create a user that can view networking resources and modify compute resources] *******************************
 changed: [localhost]
-
-TASK [create default security group to allow HTTP, HTTPS and SSH] **************************************************
-changed: [localhost]
-
-TASK [Because ansible ec2_vpc_route_table doesn't support IPv6, need to manually add IPv6 default route] ***********
-Pausing for 300 seconds
-(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
-ok: [localhost]
-
-TASK [Query publuc subnet information] *****************************************************************************
-ok: [localhost]
-
-TASK [Query private information] ***********************************************************************************
-ok: [localhost]
-
-TASK [Deploy a jumphost] *******************************************************************************************
-changed: [localhost]
-
-TASK [Deploy a web server] *****************************************************************************************
-changed: [localhost]
-
-TASK [Deploy a private server] *************************************************************************************
-changed: [localhost]
-
-TASK [Query web EC2 info] ******************************************************************************************
-ok: [localhost]
-
-TASK [Add web servers to the group] ********************************************************************************
-changed: [localhost] => (item={u'root_device_type': u'ebs', u'private_dns_name': u'ip-192-168-1-141.ap-southeast-2.compute.internal', u'cpu_options': {u'threads_per_core': 1, u'core_count': 1}, u'security_groups': [{u'group_id': u'sg-052a8edfc855c9d8d', u'group_name': u'WEB_SG'}], u'monitoring': {u'state': u'disabled'}, u'subnet_id': u'subnet-01fc50dcc434f20c8', u'ebs_optimized': False, u'state': {u'code': 16, u'name': u'running'}, u'source_dest_check': True, u'client_token': u'0af719359798493a94f3664fda32efa3', u'virtualization_type': u'hvm', u'root_device_name': u'/dev/sda1', u'public_ip_address': u'13.238.194.174', u'tags': {u'Name': u'web'}, u'key_name': u'web-keypair', u'image_id': u'ami-02a599eb01e3b3c5b', u'ena_support': True, u'hibernation_options': {u'configured': False}, u'capacity_reservation_specification': {u'capacity_reservation_preference': u'open'}, u'public_dns_name': u'ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com', u'block_device_mappings': [{u'ebs': {u'status': u'attached', u'delete_on_termination': True, u'attach_time': u'2020-05-02T11:24:51+00:00', u'volume_id': u'vol-033fc4e2248525b22'}, u'device_name': u'/dev/sda1'}], u'metadata_options': {u'http_endpoint': u'enabled', u'state': u'applied', u'http_tokens': u'optional', u'http_put_response_hop_limit': 1}, u'placement': {u'availability_zone': u'ap-southeast-2a', u'tenancy': u'default', u'group_name': u''}, u'ami_launch_index': 0, u'hypervisor': u'xen', u'network_interfaces': [{u'status': u'in-use', u'description': u'', u'interface_type': u'interface', u'ipv6_addresses': [{u'ipv6_address': u'2406:da1c:711:6300:e5e7:47a7:d064:e792'}], u'groups': [{u'group_id': u'sg-052a8edfc855c9d8d', u'group_name': u'WEB_SG'}], u'association': {u'public_ip': u'13.238.194.174', u'public_dns_name': u'ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com', u'ip_owner_id': u'amazon'}, u'source_dest_check': True, u'private_dns_name': u'ip-192-168-1-141.ap-southeast-2.compute.internal', u'subnet_id': u'subnet-01fc50dcc434f20c8', u'network_interface_id': u'eni-0fc018c62637d15b3', u'attachment': {u'status': u'attached', u'device_index': 0, u'attachment_id': u'eni-attach-0ab3cad9a284dc670', u'delete_on_termination': True, u'attach_time': u'2020-05-02T11:24:50+00:00'}, u'private_ip_addresses': [{u'private_ip_address': u'192.168.1.141', u'private_dns_name': u'ip-192-168-1-141.ap-southeast-2.compute.internal', u'association': {u'public_ip': u'13.238.194.174', u'public_dns_name': u'ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com', u'ip_owner_id': u'amazon'}, u'primary': True}], u'mac_address': u'02:c9:e3:88:c1:f8', u'private_ip_address': u'192.168.1.141', u'vpc_id': u'vpc-0f86e616bb2bf3238', u'owner_id': u'687251871473'}], u'launch_time': u'2020-05-02T11:24:50+00:00', u'instance_id': u'i-0bd1450cd8c22209c', u'instance_type': u't2.micro', u'architecture': u'x86_64', u'state_transition_reason': u'', u'private_ip_address': u'192.168.1.141', u'vpc_id': u'vpc-0f86e616bb2bf3238', u'product_codes': []})
-
-PLAY [Provision web server] ****************************************************************************************
-
-TASK [update and upgrade apt packages] *****************************************************************************
-[WARNING]: The value True (type bool) in a string field was converted to 'True' (type string). If this does not
-look like what you expect, quote the entire value to ensure it does not change.
-changed: [ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com]
-
-TASK [install apache on ubuntu] ************************************************************************************
-changed: [ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com]
 
 PLAY RECAP *********************************************************************************************************
-ec2-13-238-194-174.ap-southeast-2.compute.amazonaws.com : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-localhost                  : ok=14   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
-          : ok=8    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0    
+localhost                  : ok=4    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 #### Step 3
