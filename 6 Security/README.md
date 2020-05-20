@@ -86,7 +86,7 @@ localhost                  : ok=4    changed=4    unreachable=0    failed=0    s
 Add a web application firewall in front of your web server and block any attempts to access /admin or /login URLs.
 
 #### Solution
-Create a condition with two filters referenced by a WAF rule then called by a WAF ACL
+Create a condition with two filters referenced by a WAF rule then called by a WAF ACL.
 ```
 [timsun@controller 6 Security]$ ansible-playbook waf.yml
 
