@@ -113,7 +113,7 @@ localhost                  : ok=4    changed=4    unreachable=0    failed=0    s
 Log all sessions to and from SSH jump host.
 
 #### Solution
-Create an IAM role with permission of creating cloudwatch log groups and writing logs. Then create a flow log binding associating with the network interface of the Jumphost 
+Create an IAM role with permission of creating cloudwatch log groups and writing logs. Then create a flow log binding associating with the network interface of the Jumphost.
 ```
 [timsun@controller 6 Security]$ ansible-playbook logging.yml 
 
